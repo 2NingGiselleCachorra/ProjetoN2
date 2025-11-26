@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
 import { styles } from "../styles/styles";
-import { adicionarContato } from "../data/banco";
+import { adicionarContato } from "../data/banco"; // Importa a função que salva o contato no “banco de dados”.
 
 export default function AddScreen() {
+  // Cada useState guarda o valor digitado no formulário.
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
   const [email, setEmail] = useState("");
   const [endereco, setEndereco] = useState("");
   const [escolaridade, setEscolaridade] = useState("");
 
+  // Função inicia ao clicar em "Salvar contato".
   function SalvarContato() {
+    // Monta um objeto com os dados digitados pelo usuário.
     let novo = {
       nome: nome,
       telefone: telefone,
@@ -19,10 +22,14 @@ export default function AddScreen() {
       escolaridade: escolaridade,
     };
 
+    // Envia o objeto para o banco simulado.
+    // Se essa função não existir, o contato nunca seria salvo.
     adicionarContato(novo);
 
     alert("Contato salvo!");
 
+    // Limpa o formulário.
+    // Sem isso, os dados antigos continuariam aparecendo.
     setNome("");
     setTelefone("");
     setEmail("");
@@ -34,6 +41,9 @@ export default function AddScreen() {
     <View style={styles.container}>
       <View style={styles.card}>
         <Text style={styles.title}>Adicionar Contato</Text>
+
+        {/* Cada campo abaixo controla seu conteúdo através do useState correspondente.
+        Sem o value/onChangeText, o campo não funcionaria corretamente. */}
 
         <Text style={styles.label}>Nome:</Text>
         <TextInput
@@ -77,6 +87,7 @@ export default function AddScreen() {
           onChangeText={setEscolaridade}
         />
 
+        {/* Botão que chama a função de salvar. */}
         <Button title="Salvar contato" onPress={SalvarContato} />
       </View>
     </View>
