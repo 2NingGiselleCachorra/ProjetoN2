@@ -1,3 +1,6 @@
+// Banco de dados SIMULADO.
+// Armazena tudo apenas na memória.
+// Se fechar o app, os dados somem.
 let contatos = [
   {
     id: 1,
@@ -25,10 +28,15 @@ let contatos = [
   },
 ];
 
+// Retorna a lista completa.
+// Se essa função não existisse, a tela de contatos não teria como pegar os dados.
 export function getContatos() {
   return contatos;
 }
 
+// Adiciona um novo contato à lista.
+// Gera ID automaticamente baseado no tamanho atual.
+// Sem isso, novos contatos não apareceriam no app.
 export function adicionarContato(novoContato) {
   novoContato.id = contatos.length + 1;
   contatos.push(novoContato);
