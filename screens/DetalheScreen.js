@@ -2,6 +2,8 @@ import { View, Text, Button } from "react-native";
 import { styles } from "../styles/styles";
 
 export default function DetalheScreen({ route, navigation }) {
+  // route.params recebe os dados enviados pela tela anterior.
+  // Sem isso, a tela não saberia qual contato deve exibir.
   const params = route.params || {};
 
   return (
@@ -16,6 +18,8 @@ export default function DetalheScreen({ route, navigation }) {
         <Text>Escolaridade: {params.escolaridade}</Text>
 
         <View style={{ marginTop: 15 }}>
+           {/* Botão que volta para a tela anterior.
+              navigation.goBack só funciona por causa do Stack Navigator. */}
           <Button
             title="Voltar"
             onPress={() => navigation.goBack()}
